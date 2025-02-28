@@ -1,223 +1,61 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="refresh" content="480">
-    <title>Mrsportsy Live</title>
-    <link rel="icon" href="https://pbs.twimg.com/media/Gjr5vAfbcAAUFLg?format=jpg&name=240x240" />
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css"> 
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-    <style>
-      
+<html>
+  <head>
+    <script disable-devtool-auto src='https://cdn.jsdelivr.net/npm/disable-devtool@latest'></script>
+  	<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/clappr/clappr@latest/dist/clappr.min.js"></script>
+    <script type='text/javascript' src='https://cdn.jsdelivr.net/jquery.marquee/1.4.0/jquery.marquee.min.js'></script>
+    <script src="https://cdn.jsdelivr.net/gh/clappr/dash-shaka-playback@latest/dist/dash-shaka-playback.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/clappr/clappr-level-selector-plugin@latest/dist/level-selector.min.js"></script>
+  </head>
+
+  <body>
 
 
-        body {
-            font-family: 'Poppins', sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #111;
-            color: white;
-            text-align: center;
-            overflow: hidden;
-        }
+    <div id="player"><h1>MRSPORTSY LIVE</h1></div>
 
-        .container {
-            position: relative;
-            width: 100%;
-            height: 100vh;
-            background-color: #222;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-        }
-
-        iframe {
-            width: 100%;
-            height: 100%;
-            border: none;
-            object-fit: cover;
-            border-radius: 8px;
-        }
-
-        .loading, .error-message {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            font-size: 20px;
-            color: #fff;
-            animation: fadeInOut 1s infinite;
-        }
-
-        .loading {
-            font-size: 22px;
-            font-weight: 600;
-        }
-
-        .error-message {
-            font-size: 18px;
-            color: red;
-            font-weight: bold;
-            display: none; /* Initially hidden */
-        }
-
-        @keyframes fadeInOut {
-            0% { opacity: 1; }
-            50% { opacity: 0.5; }
-            100% { opacity: 1; }
-        }
-
-        .player-title {
-            font-size: 26px;
-            margin-bottom: 15px;
-            font-weight: 600;
-            color: #f1f1f1;
-            position: absolute;
-            top: 20px;
-            left: 20px;
-            z-index: 10;
-        }
-
-        .back-button {
-            position: absolute;
-            bottom: 20px;
-            left: 20px;
-            padding: 12px 20px;
-            background-color: #333;
-            color: #fff;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 16px;
-            transition: background-color 0.3s;
-        }
-
-        .back-button:hover {
-            background-color: #444;
-        }
-
-        .fullscreen-button {
-            position: absolute;
-            bottom: 20px;
-            right: 20px;
-            background-color: #f1f1f1;
-            color: #111;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 16px;
-            font-weight: 600;
-            transition: background-color 0.3s;
-        }
-
-        .fullscreen-button:hover {
-            background-color: #bbb;
-        }
-
-        .fullscreen-instructions {
-            position: absolute;
-            bottom: 50px;
-            left: 50%;
-            transform: translateX(-50%);
-            background-color: rgba(0, 0, 0, 0.7);
-            padding: 15px 25px;
-            border-radius: 5px;
-            color: #fff;
-            font-size: 16px;
-            text-align: center;
-            z-index: 10;
-            font-weight: bold;
-        }
-
-       
-        
-        .sticky-icon  {
-	z-index:1;
-	position:fixed;
-	top:15%;
-	right:0%;
-	width:220px;
-	display:flex;
-	flex-direction:column;}  
-.sticky-icon a  {
-	transform:translate(160px,0px);
-	border-radius:50px 0px 0px 50px;
-	text-align:left;
-	margin:2px;
-	text-decoration:none;
-	text-transform:uppercase;
-	padding:10px;
-	font-size:22px;
-	font-family:'Oswald', sans-serif;
-	transition:all 0.8s;}
-.sticky-icon a:hover  {
-	color:#050505;
-	transform:translate(0px,0px);}	
-.sticky-icon a:hover i  {
-	transform:rotate(360deg);}
-/*.search_icon a:hover i  {
-	transform:rotate(360deg);}*/
-
-	
-.Instagram  {
-	background-color:#1418ee;
-	color:#0e0d0d;}
-	
-					
-.sticky-icon a i {
-	background-color:#f0ecec;
-	height:40px;
-	width:40px;
-	color:#f8efef;
-	text-align:center;
-	line-height:40px;
-	border-radius:50%;
-	margin-right:20px;
-	transition:all 0.5s;}
-
-    </style>
-</head>
-<body>
-    <div class="sticky-icon">
-        <a href="https://t.me/LivesportsH" class="Instagram"><i class="fab fa-telegram-plane" style="color: #0f8ae7;"></i> Telegram </a>
-     </div>
-    <div class="container">
-
-                    <iframe id="match-iframe" src="https://denverisalive.github.io/Player/Player.html?mpd=https://live3.shoq.com.pk/live/eds/Geo_Super/DASH/Geo_Super.mpd&keyId=7641daa5bacfbb61936c40a221c9e78e&key=5732dd242f28338e909dc06cb1a1e5a2" allowfullscreen></iframe>
-        
-        <div class="fullscreen-instructions" id="instructions">
-            <p>Only Chrome Browser Support Fullscreen</p>
-        </div>
-    </div>
-
+<h1>MRSPORTSY LIVE</h1>
     <script>
-        function enterFullscreen() {
-            let iframe = document.getElementById('match-iframe');
-            if (iframe.requestFullscreen) {
-                iframe.requestFullscreen();
-            } else if (iframe.mozRequestFullScreen) {
-                iframe.mozRequestFullScreen();
-            } else if (iframe.webkitRequestFullscreen) {
-                iframe.webkitRequestFullscreen();
-            } else if (iframe.msRequestFullscreen) {
-                iframe.msRequestFullscreen();
-            }
-        }
+            var _0x3d58ff = {
+  'appId': "9DFB77C0",
+  'contentType': "video/mp4"
+};
+var _0x5eb77f = {};
+function _0x2ece59(_0x59fff6, _0x4880bf, _0x15a997, _0x5392c8, _0x5a0e22) {
+  return _0x5bee(_0x5a0e22 - 0x2f7, _0x59fff6);
+}
+_0x5eb77f["7641daa5bacfbb61936c40a221c9e78e"] = "5732dd242f28338e909dc06cb1a1e5a2";
+var _0x567207 = {
+  'clearKeys': _0x5eb77f
+};
+var _0x385915 = {
+  'drm': _0x567207
+};
+function _0x44878f(_0x23eba6, _0x5a5667, _0x3cbf03, _0xb76feb, _0x437a10) {
+  return _0x5bee(_0x23eba6 - 0x210, _0xb76feb);
+}
+var player = new Clappr.Player({
+  'source': "https://live3.shoq.com.pk/live/eds/Geo_Super/DASH/Geo_Super.mpd",
 
-        const errorMessage = document.querySelector('.error-message');
-        const loadingMessage = document.querySelector('.loading');
 
-        if (loadingMessage) {
-            setTimeout(function() {
-                loadingMessage.style.display = 'none';
-                errorMessage.style.display = 'block';
-            }, 5000);
-        }
-    </script>
-
-</body>
+  'mimeType': 'application/dash+xml',
+  'height': '100%',
+  'width': "100%",
+  'autoPlay': false,
+  'plugins': [LevelSelector, DashShakaPlayback, Clappr.MediaControl],
+  mediacontrol: { seekbar: "#ff0000", buttons: "#eee" },
+  'events': {
+    'onReady': function () {
+      var _0x250be4 = this.getPlugin("click_to_pause");
+      if (_0x250be4) {
+        _0x250be4.disable();
+      }
+    }
+  },
+  'chromecast': _0x3d58ff,
+  'shakaConfiguration': _0x385915,
+  'shakaOnBeforeLoad': function (_0x325d80) {},
+  'parentId': "#player"
+});
+  </script>
+  </body>
 </html>
