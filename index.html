@@ -1,3 +1,5 @@
+
+
 <html lang="en">
 
 <head>
@@ -107,11 +109,11 @@ ul{overflow-x:hidden;overflow-y:auto;list-style-type:none;position:absolute;bott
 
 </div>
 
-<div class="player-poster clickable" data-poster="">
+<div class="player-poster" data-poster="" style="display: none;">
 
 <div class="play-wrapper" data-poster="">
 
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" data-poster="" class="poster-icon">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" data-poster="" class="poster-icon" style="display: none;">
 
 <path fill="#010101" d="M1.425.35L14.575 8l-13.15 7.65V.35z">
 
@@ -124,13 +126,13 @@ ul{overflow-x:hidden;overflow-y:auto;list-style-type:none;position:absolute;bott
 
 </div>
 
-<video data-html5-video="" preload="metadata">
+<video data-html5-video="" preload="metadata" src="blob:https://xfireflix.ct.ws/c7dd263f-5e3d-446b-87a3-a0367c8c1ed7">
 
 </video>
 
 </div>
 
-<div class="media-control media-control-hide" data-media-control="" style="display: none;">
+<div class="media-control live media-control-hide" data-media-control="" style="">
 
 <div class="media-control-background" data-background="">
 
@@ -157,12 +159,12 @@ ul{overflow-x:hidden;overflow-y:auto;list-style-type:none;position:absolute;bott
 <div class="bar-background" data-seekbar="">
 
           
-<div class="bar-fill-1" data-seekbar="">
+<div class="bar-fill-1" data-seekbar="" style="left: -2.01556e 06%">
 
 </div>
 
           
-<div class="bar-fill-2" data-seekbar="" style="width: 0%">
+<div class="bar-fill-2" data-seekbar="" style="width: 100%">
 
 </div>
 
@@ -175,7 +177,7 @@ ul{overflow-x:hidden;overflow-y:auto;list-style-type:none;position:absolute;bott
 </div>
 
         
-<div class="bar-scrubber" data-seekbar="" style="left: 0%">
+<div class="bar-scrubber" data-seekbar="" style="left: 100%">
 
           
 <div class="bar-scrubber-icon" data-seekbar="">
@@ -199,11 +201,11 @@ ul{overflow-x:hidden;overflow-y:auto;list-style-type:none;position:absolute;bott
 
     
     
-<button type="button" class="media-control-button media-control-icon paused" data-playpause="" aria-label="playpause">
+<button type="button" class="media-control-button media-control-icon stopped" data-playstop="" aria-label="playstop">
 
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
 
-<path fill="#010101" d="M1.425.35L14.575 8l-13.15 7.65V.35z">
+<path fill-rule="evenodd" clip-rule="evenodd" fill="#010101" d="M1.712 1.24h12.6v13.52h-12.6z">
 
 </path>
 
@@ -212,19 +214,21 @@ ul{overflow-x:hidden;overflow-y:auto;list-style-type:none;position:absolute;bott
 </button>
 
   
-      
-<div class="media-control-indicator" data-position="">
+  
+<div class="dvr-controls" data-dvr-controls="">
+
+<div class="live-info">
+live
+</div>
+
+
+<button type="button" class="live-button" aria-label="back to live">
+back to live
+</button>
+
 
 </div>
 
-  
-      
-<div class="media-control-indicator" data-duration="">
-
-</div>
-
-  
-  
 </div>
 
   
@@ -417,7 +421,7 @@ Disabled
 <script>
 
         let player;
-        var streamUrl = "stream.m3u8?cid=123&e=.m3u8";
+        var streamUrl = "stream.m3u8?cid=125&e=.m3u8";
 
         function loadPlayer() {
             console.log("Loading stream:", streamUrl);
