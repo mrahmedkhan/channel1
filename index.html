@@ -1,238 +1,89 @@
 
-<!DOCTYPE html>
-		<html>
-		<head>
-			<meta charset="utf-8">
-			<meta http-equiv="X-UA-Compatible" content="IE=edge">
-			<meta name="viewport" content="width=device-width, initial-scale=1">
-			<style>
-				body {
-					margin: 0!important;
-				}
-				#video {
-					width: 100%;
-					height: 100%;
-				}
-				.jw-icon-fullscreen, .jw-icon-pip {display: none!important;}
-				.logo-on-player {
-					position: absolute;
-					width: 100px;
-					right: 20px;
-					top: 20px;
-				}
-                .video-wrapper {
-					width: 100%;
-					height: 100%;
-                    position: relative;
-                }
-                #video-note-english-commentary {
-					position: absolute;
-					bottom: 10%;
-					left: 50%;
-					transform: translate(-50%, 0);
-					font-size: 4.5vmin;
-					text-align: center;
-					color: #000;
-					width: 100%;
-                }
-				#video-note-english-commentary > span {
-					background: #fff;
-					padding: 5px;
-				}
-				.jw-icon-settings{
-					background-image: url('https://storage.n2olabs.pro/quality/auto.png');
-					background-repeat: no-repeat;
-					background-size: contain;
-					max-height: 24px;
-				}
-				.jw-icon-settings svg{
-					display: none;
-				}
+<!DOCTYPE html><html lang="en"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="refresh" content="480">
+    <title>Mrsportsy Live</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css"> 
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0; 
+  
+            background-image: url('https://www.zaha-hadid.com/wp-content/uploads/2022/12/ZHA_Aarhus-Stadium_Render-by-Negativ-10-860x608.jpg');
 
-				[button="btn-maycdn"] {
-					width: 100px!important;
-					margin-right: 50px!important;
-				}
-
-				[button="btn-maycdn"] > .jw-icon {
-					width: 100%!important;
-				}
-			</style>
-			<!-- Global site tag (gtag.js) - Google Analytics -->
-			<script async src="https://www.googletagmanager.com/gtag/js?id=G-C6D3ZQVKHG"></script>
-			<script>
-				setTimeout(function () {
-					window.dataLayer = window.dataLayer || [];
-					function gtag(){dataLayer.push(arguments);}
-					gtag('js', new Date());
-		
-					gtag('config', 'G-C6D3ZQVKHG');
-				}, 5000);
-			</script>
-		</head>
-
-		<body>
-		<div class="video-wrapper">
-			<div id="video"></div>
-			<div id="video-note-english-commentary">
-				<span>
-					English commentary will be available when the match kicks off.
-				</span>
-			</div>
-		</div>
-
-		<script src="https://content.jwplatform.com/libraries/KB5zFt7A.js"></script>
-		<script src="https://ssl.p.jwpcdn.com/player/v/8.27.1/provider.hlsjs.js"></script>
-		<script src="https://ssl.p.jwpcdn.com/player/v/8.27.1/provider.cast.js"></script>
-		<script type="text/javascript"> jwplayer.key = "eNFaXCjyURVoCCGiHp7HTQ3hDhE/AfL0g8VE1fRbL84=";</script>
-		<script type="text/javascript" src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
-		<script>
-			var m3u8 = 'https://cdn-rum.n2olabs.pro/stream.m3u8?url=https%3A%2F%2Flivecdn.rumsport.com%2Fstream%2F45%2Findex.m3u8&token=4b57b63b9886631d71597064f9b357ddd3627a31&is_vip=false&verify=1741845600-I3Hd8jtDRQBSsDu7Ya%2FMreU2ML5thOCK%2FHQX7mwpAxk%3D';
-			let domainM3U8 = (new URL(m3u8));
-			var player = jwplayer('video');
-
-			// setInterval(() => {
-			//     eval('debugger')
-			// }, 2000)
-			const expiredInMillis = -11590467
-			console.log('expiredInMillis: '+expiredInMillis);
-
-			if (expiredInMillis > 0) {
-				setTimeout(function () {
-					document.getElementById('video-note-english-commentary').style.display = 'none';
-				}, expiredInMillis);
-			} else {
-				document.getElementById('video-note-english-commentary').style.display = 'none';
-			}
-			addEventListener("message", function (event) {
-				try {
-					const dataParse = JSON.parse(event.data);
-					if (dataParse.event == 'banner-on-player') {
-						$('.jw-wrapper').append('<div class="banner-on-player">' + dataParse.data.html + '</div>');
-					}
-					if (dataParse.event == 'logo-on-player') {
-						$('.jw-wrapper').append('<div class="logo-on-player">' + dataParse.data.html + '</div>');
-					}
-					if (dataParse.event == 'click-player') {
-						if (player != undefined) {
-							if (jwplayer().getState() != 'playing') {
-								player.play();
-							} else {
-								player.pause();
-							}
-						}
-					}
-					if (dataParse.event == 'player-unmute') {
-						if (player != undefined && player.getMute() === true) {
-							player.setMute(false);
-
-							setTimeout(() => {
-								if (player.getState() != 'playing') {
-									player.play();
-								}
-							}, 500)
-						}
-					}
-					if (dataParse.event == 'capture-player') {
-						html2canvas(document.querySelector(".video-wrapper")).then(canvas => {
-							let dataURL = canvas.toDataURL();
-							sendEventToParent('response-capture-player', { image: dataURL});
-						});
-					}
-				} catch (e) {
-					console.log(e);
-				}
-			}, false);
-		
-			window.addEventListener('load', function () {
-				/*if (navigator.userAgent.match('Intel Mac OS') == null) {
-		
-				}*/
-				//jwplayer_hls_provider.attach();
-				// if(Hls.isSupported()) {
-				player.setup({
-					file: m3u8,
-					type: 'hls',
-					autostart: true,
-					mute: true,
-					width: "100%",
-					height: "100vh",
-					pipIcon: "disabled"
-				});
-
-				if (location.href.match('fake-fullscreen')) {
-					player.addButton(
-						"https://admin.ttbd.live/images/fullscreen.svg",
-						"Full screen",
-						function () {
-							sendEventToParent('alert_message', {
-								'message': 'Fullscreen mode is enabled for VIP member only',
-								'icon': 'error'
-							});
-						},
-						"btn-fullscreen-fake"
-					);
-				}
-
-				// player.addButton(
-				// 	"https://admin.ttbd.live/images/maycdn3.png?v=1",
-				// 	"MayCDN",
-				// 	function () {
-				// 		window.open("https://maycdn.com", "_blank");
-				// 	},
-				// 	"btn-maycdn"
-				// );
-
-				player.on('ready', function() {
-					if (player.getMute() === true) {
-						sendEventToParent('player-is-muted', true);
-					}
-				})
-
-				player.on('mute', function() {
-					if (player.getMute() === true) {
-						sendEventToParent('player-manual-mute', true);
-					} else {
-						sendEventToParent('player-manual-unmute', true);
-					}
-				})
-
-				player.on('error', function(e) {
-					setTimeout(function() {
-						sendEventToParent('error-player', e);
-					}, 3000);
-				})
-
-				player.on('levelsChanged', function () {
-					document.getElementsByClassName("jw-icon-settings")[0].style.backgroundImage = 'url(https://storage.n2olabs.pro/quality/all-anim.gif)';
-				});
-				player.on('visualQuality', function (level,label,reason) {
-					if(level.level){
-						level = level.level;
-						var label = level.label.toLowerCase();
-						document.getElementsByClassName("jw-icon-settings")[0].style.backgroundImage = 'url(https://storage.n2olabs.pro/quality/' + label+".png" + ')';
-					}
-				});
-
-				setTimeout(function () {player.play();}, 1000);
-				setTimeout(function () {player.play();}, 2000);
-				setTimeout(function () {player.play();}, 3000);
-				setTimeout(function () {player.play();}, 4000);
-				setTimeout(function () {player.play();}, 5000);
-				// }
-			})
-
-			function sendEventToParent(event, data) {
-				if (parent) {
-					parent.postMessage(
-						JSON.stringify({
-							event,
-							data,
-						}),
-						'*'
-					)
-				}
-			}
-		</script>
-		</body>
-		</html>
+            color: white;
+            text-align: center;
+            overflow: hidden;
+        }
+        .header {
+            font-size: 26px;
+            font-weight: 600;
+            color: #f1f1f1;
+            background: #222;
+            padding: 15px;
+        }
+        .telegram-ad {
+            position: fixed;
+            bottom: 5px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #0088cc;
+            color: white;
+            padding: 4px 8px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 10px;
+            font-weight: bold;
+            z-index: 1000;
+        }
+        .telegram-ad:hover {
+            background-color: #0077b5;
+        }
+        .container {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            background-color: #222;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+        .fullscreen-instructions {
+            position: fixed;
+            bottom: 25px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 4px 8px;
+            border-radius: 5px;
+            color: #fff;
+            font-size: 10px;
+            text-align: center;
+            z-index: 10;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h2 style="color:yellow;">MRSPORTSY LIVE</h2
+     
+    </div>
+    <div class="container">
+        <iframe id="match-iframe" src="https://xiaolin.live/wowhaha.php?m3u8=https%3A%2F%2Flivecdn.rumsport.com%2Fstream%2F34%2Findex.m3u8&id=2073&token=4b57b63b9886631d71597064f9b357ddd3627a31.false.1741867200-9AxMp4J91o6Lzdk45zqekOerk9y1A%2Fm1BzaMQDSCV%2Fo%3D&ver=2903139&parent=amzstream.tv&is_vip=true&image=https%3A%2F%2Fimg.amzstream.tv%2Fstatic%2Fcommon%2Fimg%2Fmatchs%2F1629431247.jpg&matchdate=1741860000" allowfullscreen></iframe>
+    </div>
+    <a href="https://t.me/streamthegamebuttom" class="telegram-ad">Join Our Telegram Channel</a>
+</body>
+</html>
